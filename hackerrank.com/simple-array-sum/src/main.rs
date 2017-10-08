@@ -3,11 +3,9 @@ fn main() {
     std::io::stdin().read_line(&mut input_line).expect("Read error.");
     input_line.clear();
 
-    let mut array_sum: i32 = 0;
     std::io::stdin().read_line(&mut input_line).expect("Read error.");
-    for number_str in input_line.split_whitespace() {
-        let number = number_str.parse().expect("Failed to parse number.");
-        array_sum += number;
-    }
+    let array_sum = input_line.split_whitespace()
+                              .map(|s| s.parse::<i32>().expect("Failed to parse number."))
+                              .fold(0, |sum, n| sum + n);
     println!("{}", array_sum);
 }
